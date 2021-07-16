@@ -11,14 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InventoryItemApp">
         <activity
-            android:name="com.hightech.inventoryapp.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.InventoryItemApp.NoActionBar">
+            android:name="com.hightech.inventoryapp.test.MovieActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.hightech.inventoryapp.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.InventoryItemApp.NoActionBar">
+
         </activity>
     </application>
 
