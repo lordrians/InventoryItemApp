@@ -40,34 +40,34 @@ class ListDetailsFragment : Fragment() {
         val id = safeArgs.id
         Log.d("ListDetailsFragment", "$id")
 
-        inventoryViewModel.getItemBy(id).observe(viewLifecycleOwner, { selectedItem ->
-            item = selectedItem
-            bind(item)
-        })
+//        inventoryViewModel.getItemBy(id).observe(viewLifecycleOwner, { selectedItem ->
+//            item = selectedItem
+//            bind(item)
+//        })
     }
 
-    private fun bind(item : InventoryItem) {
-        binding.apply {
-            itemName.text = item.itemName
-            itemPrice.text = item.getFormattedPrice()
-            itemCount.text = item.quantityInStock.toString()
-            sellItem.setOnClickListener { inventoryViewModel.sell(item) }
-            deleteItem.setOnClickListener { showConfirmationDialog() }
-            editItem.setOnClickListener { editItem() }
-        }
-    }
-
-    private fun showConfirmationDialog() {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(android.R.string.dialog_alert_title)
-            .setMessage("Are you sure want to delete?")
-            .setCancelable(false)
-            .setNegativeButton("NO") { _, _ -> }
-            .setPositiveButton("YES") { _, _ ->
-                inventoryViewModel.delete(item)
-                findNavController().navigateUp()
-            }.show()
-    }
+//    private fun bind(item : InventoryItem) {
+//        binding.apply {
+//            itemName.text = item.itemName
+//            itemPrice.text = item.getFormattedPrice()
+//            itemCount.text = item.quantityInStock.toString()
+//            sellItem.setOnClickListener { inventoryViewModel.sell(item) }
+//            deleteItem.setOnClickListener { showConfirmationDialog() }
+//            editItem.setOnClickListener { editItem() }
+//        }
+//    }
+//
+//    private fun showConfirmationDialog() {
+//        MaterialAlertDialogBuilder(requireContext())
+//            .setTitle(android.R.string.dialog_alert_title)
+//            .setMessage("Are you sure want to delete?")
+//            .setCancelable(false)
+//            .setNegativeButton("NO") { _, _ -> }
+//            .setPositiveButton("YES") { _, _ ->
+//                inventoryViewModel.delete(item)
+//                findNavController().navigateUp()
+//            }.show()
+//    }
 
     private fun editItem() {
         findNavController().navigate(

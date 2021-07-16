@@ -36,43 +36,43 @@ class AddItemFragment : Fragment() {
 
         val id = safeArgs.id
 
-        if (id > 0) {
-            inventoryViewModel.getItemBy(id).observe(viewLifecycleOwner, { selectedItem ->
-                item = selectedItem
-                bind(item)
-            })
-        } else {
-            binding.apply {
-                saveAction.setOnClickListener {
-                        inventoryViewModel.addNewItem(
-                            binding.itemName.text.toString(),
-                            binding.itemPrice.text.toString(),
-                            binding.itemCount.text.toString()
-                        )
-                    findNavController().navigate(AddItemFragmentDirections.actionAddItemFragmentToListItemFragment())
-                }
-            }
-        }
+//        if (id > 0) {
+//            inventoryViewModel.getItemBy(id).observe(viewLifecycleOwner, { selectedItem ->
+//                item = selectedItem
+//                bind(item)
+//            })
+//        } else {
+//            binding.apply {
+//                saveAction.setOnClickListener {
+//                        inventoryViewModel.addNewItem(
+//                            binding.itemName.text.toString(),
+//                            binding.itemPrice.text.toString(),
+//                            binding.itemCount.text.toString()
+//                        )
+//                    findNavController().navigate(AddItemFragmentDirections.actionAddItemFragmentToListItemFragment())
+//                }
+//            }
+//        }
     }
-
-    private fun bind(item: InventoryItem) {
-        binding.apply {
-            itemName.setText(item.itemName, TextView.BufferType.SPANNABLE)
-            itemPrice.setText(item.itemPrice.toString(), TextView.BufferType.SPANNABLE)
-            itemCount.setText(item.quantityInStock.toString(), TextView.BufferType.SPANNABLE)
-            saveAction.setOnClickListener { updateItem() }
-        }
-    }
-
-    private fun updateItem() {
-        binding.apply {
-            inventoryViewModel.updateItem(
-                safeArgs.id,
-                itemName.text.toString(),
-                itemPrice.text.toString(),
-                itemCount.text.toString(),
-            )
-        }
-        findNavController().navigate(AddItemFragmentDirections.actionAddItemFragmentToListItemFragment())
-    }
+//
+//    private fun bind(item: InventoryItem) {
+//        binding.apply {
+//            itemName.setText(item.itemName, TextView.BufferType.SPANNABLE)
+//            itemPrice.setText(item.itemPrice.toString(), TextView.BufferType.SPANNABLE)
+//            itemCount.setText(item.quantityInStock.toString(), TextView.BufferType.SPANNABLE)
+//            saveAction.setOnClickListener { updateItem() }
+//        }
+//    }
+//
+//    private fun updateItem() {
+//        binding.apply {
+//            inventoryViewModel.updateItem(
+//                safeArgs.id,
+//                itemName.text.toString(),
+//                itemPrice.text.toString(),
+//                itemCount.text.toString(),
+//            )
+//        }
+//        findNavController().navigate(AddItemFragmentDirections.actionAddItemFragmentToListItemFragment())
+//    }
 }

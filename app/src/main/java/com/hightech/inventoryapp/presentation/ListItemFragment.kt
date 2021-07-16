@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hightech.InventoryItemapp.databinding.FragmentFirstBinding
+import com.hightech.inventoryapp.test.ResultState
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ListItemFragment : Fragment() {
@@ -46,12 +47,22 @@ class ListItemFragment : Fragment() {
             recyclerView.adapter = listItemAdapter
         }
 
-        inventoryViewModel.allItems.observe(viewLifecycleOwner, { allItems ->
-            Log.d("Hai", "$allItems")
-            allItems.let {
-                listItemAdapter.submitList(it)
+        inventoryViewModel.movies.observe(this,{
+            when (it){
+                is ResultState.InProgress -> {}
+                is ResultState.Success -> {
+                    Log.i("ActivityMain", "onCreate: ${it.data}")
+                }
+                is ResultState.Done -> {}
+                is ResultState.Error -> {}
             }
         })
+//        inventoryViewModel.allItems.observe(viewLifecycleOwner, { allItems ->
+//            Log.d("Hai", "$allItems")
+//            allItems.let {
+//                listItemAdapter.submitList(it)
+//            }
+//        })
 
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(ListItemFragmentDirections.actionListItemFragmentToAddItemFragment(0))
